@@ -1,5 +1,11 @@
 pwdir=`pwd`
-sed -i "s:PROJECT_HOME=.*$:PROJECT_HOME=$pwdir:g" common.mk
+
+SED=`which sed`
+if [[ $OSTYPE == "darwin"* ]]; then
+    SED=`which gsed`
+fi
+
+$SED -i "s:PROJECT_HOME=.*$:PROJECT_HOME=$pwdir:g" common.mk
 
 export CMAKE=$pwdir/cmake
 export DEPS=$pwdir/dep_libs
